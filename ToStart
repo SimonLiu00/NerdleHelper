@@ -1,0 +1,55 @@
+//nerdlegame.com helper.
+//Listing multiplication equations with 6 distinct numeric digits.
+
+#include <stdio.h>
+using namespace std;
+
+int main(void)
+{
+    int i, j, p, q;
+    int product;
+    int d[7] = { 0,0,0,0,0,0,0 };   //Array of digits in the equation.
+    char flag;
+    int count = 0; 
+
+    //Generating the equation "i*j=product".
+    for (i = 1; i <= 9; i++)
+    {
+        for (j = 10; j <= 99; j++)
+        {
+            product = i * j;
+            flag = 'Y';
+            d[1] = i;
+            d[2] = j % 10;
+            d[3] = j / 10;
+            d[4] = product % 10;
+            d[5] = product % 100 - d[4];
+            d[6] = product / 100;
+
+            //Ruling out equations with identical digits.
+            for (p = 1; p <= 5; p++)
+            {
+                for (q = p + 1; q <= 6; q++)
+                {
+                    if (d[q] == d[p])
+                    {
+                        flag = 'N';
+                        break;
+                    }
+                }
+                if (flag == 'N')
+                    break;
+            }
+
+            if (flag == 'N' || d[6] == 0)
+                continue;
+            printf("%d*%d=%d", i, j, product);
+            count++;
+        }
+    }
+
+    if (count == 0)
+        printf("Nothing found.");
+    
+    return 0;
+}
