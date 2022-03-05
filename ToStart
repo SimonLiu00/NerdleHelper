@@ -43,13 +43,13 @@ int main(void)
 
             if (flag == 'N' || d[6] == 0)
                 continue;
-            printf("%d*%d=%d", i, j, product);
+            printf("%d*%d=%d\n", i, j, product);
             count++;
         }
     }
 
     if (count == 0)
-        printf("Nothing found.");
+        printf("Nothing found.\n");
     
     return 0;
 }
